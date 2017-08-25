@@ -18,7 +18,7 @@ public class EnviromentMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Time.timeScale = 10;
+        Time.timeScale = 2;
         rigid = GetComponent<Rigidbody>();
         
     }
@@ -33,6 +33,10 @@ public class EnviromentMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x, yRot, transform.eulerAngles.z);
     }
 
+    void FixedUpdate()
+    {
+        rigid.AddForce(0, 0, -50);
+    }
 
     void Decelerate()
     {
