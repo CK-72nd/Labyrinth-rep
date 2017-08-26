@@ -11,7 +11,7 @@ public class EnviromentMovement : MonoBehaviour
     public float inputH;
     public float minRot = -10f;
     public float maxRot = 10f;
-    public const float yRot = 0;
+    
 
     private Rigidbody rigid;
 
@@ -30,27 +30,27 @@ public class EnviromentMovement : MonoBehaviour
        
         Rotation();
         Decelerate();
-        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, yRot, transform.eulerAngles.z);
+        transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
     }
 
     void FixedUpdate()
     {
-        rigid.AddForce(0, 0, -50);
+        rigid.AddForce(0, -50, 0);
     }
 
     void Decelerate()
     {
-        // Activates deceleration
+        // Activates decelerations
         rigid.velocity += -rigid.velocity * deceleration * Time.deltaTime;
     }
 
     void Rotation()
     {
-        inputV = Input.GetAxis("Vertical") * rotationSpeed * Time.deltaTime;
+       // inputV = Input.GetAxis("Vertical") * rotationSpeed * Time.deltaTime;
         inputH = Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
 
-        transform.Rotate(-inputV, 0, 0);
-        transform.Rotate(0, 0,inputH);
+        //transform.Rotate(-inputV, 0, 0);
+        transform.Rotate(0, inputH, 0);
 
         //Vector3 currentRotation = transform.localRotation.eulerAngles;
         //currentRotation.x = Mathf.Clamp(currentRotation.x, minRot, maxRot);
